@@ -1,23 +1,50 @@
 import './App.css';
 
+import {getCountries} from "./services/countryApi.js";
+import {useState} from "react";
+
+
 function App() {
+    const [countries, setCountries] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-    async function showCountries() {
-        const response = await axios.get('https://api.restcountries.com/countries/v5');
-        try {console.log(response);
+    const handleShowCountries = async () => {
+        try {
+            setLoading(true);
+            setError("");
 
-        }catch(err) {
-            console.log(err);
+            const data = await getCountries();
+            setCountries(data);
+
+        } catch (error) {
+            setError("Landen ophalen mislukt.");
+
+        } finally {
+            setLoading(false);
         }
-    }
-    }
+    };
 
     return (
-        <>
+        <main>
             <h1>Countries</h1>
-            <button type="button" onClick={showCountries}></button>
-        </>
-    )
+
+            {countries.length === 0 && (
+                <button
+                    onClick={handleShowCountries}
+                    disabled={loading}
+                >
+                    {loading ? "Laden..." : "Toon landen"}
+                </button>
+            )}
+
+            {error && <p>{error}</p>}
+
+            {countries.length > 0 && (
+                <p>Aantal landen: {countries.length}</p>
+            )}
+        </main>
+    );
 }
 
-export default App
+export default App;

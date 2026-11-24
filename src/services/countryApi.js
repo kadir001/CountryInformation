@@ -17,6 +17,7 @@ export const getCountries = async () => {
         });
 
         return response.data;
+
     } catch (error) {
         console.error("Fout bij ophalen landen:", error);
         throw error;
