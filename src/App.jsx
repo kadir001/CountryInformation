@@ -2,7 +2,7 @@ import './App.css';
 
 import {getCountries} from "./services/countryApi.js";
 import {useState} from "react";
-
+import worldMap from "./assets/world_map.png";
 
 function App() {
     const [countries, setCountries] = useState([]);
@@ -27,7 +27,14 @@ function App() {
 
     return (
         <main>
-            <h1>Countries</h1>
+            <header className="header">
+                <img
+                    src={worldMap}
+                    alt="Wereldkaart"
+                    className="world-map"
+                />
+            <h1>Countries of the world</h1>
+            </header>
 
             {countries.length === 0 && (
                 <button

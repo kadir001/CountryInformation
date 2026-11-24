@@ -1,0 +1,13 @@
+.header {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.world-map {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: 250px;
+    object-fit: contain;
+    margin: 0 auto 20px;
+}
