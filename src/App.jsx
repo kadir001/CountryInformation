@@ -5,6 +5,28 @@ import getCountries from "./services/countryApi.js";
 import { useState } from "react";
 import worldMap from "./assets/world_map.png";
 
+function getRegionColor(region) {
+    switch (region) {
+        case "Africa":
+            return "blue";
+
+        case "Americas":
+            return "green";
+
+        case "Asia":
+            return "red";
+
+        case "Europe":
+            return "#B8860B";
+
+        case "Oceania":
+            return "purple";
+
+        default:
+            return "#333333";
+    }
+}
+
 function App() {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -80,7 +102,12 @@ function App() {
                                     />
                                 </td>
 
-                                <td>{country.name}</td>
+                                <td>
+                                    <span style={{
+                                        color: getRegionColor(country.region) }}>
+                                        {country.name}
+                                    </span>
+                                </td>
 
                                 <td>Has a population of{" "}
                                     {country.population?.toLocaleString("nl-NL")} people
