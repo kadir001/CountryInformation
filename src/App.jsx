@@ -63,7 +63,9 @@ function App() {
                         </thead>
 
                         <tbody>
-                        {countries.map((country) => (
+                        {[...countries]
+                            .sort((a, b) => a.population - b.population)
+                            .map((country) => (
                             <tr key={country.alpha2Code}>
                                 <td>
                                     <img
