@@ -3,13 +3,17 @@
     padding: 30px 20px;
 }
 
+.world-map-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
 .world-map {
     display: block;
     width: 100%;
-    max-width: 900px;
     height: 250px;
     object-fit: contain;
-    margin: 0 auto 20px;
 }
 
 .countries-section {
@@ -49,4 +53,16 @@
 
 .countries-table tbody tr:hover {
     background-color: #f3f6f9;
+}
+
+.show-countries-button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
