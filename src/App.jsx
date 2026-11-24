@@ -29,23 +29,28 @@ function App() {
     return (
         <main>
             <header className="header">
-                <img
-                    src={worldMap}
-                    alt="Wereldkaart"
-                    className="world-map"
-                />
+                <div className="world-map-container">
+                    <img
+                        src={worldMap}
+                        alt="Wereldkaart"
+                        className="world-map"
+                    />
+
+                    {countries.length === 0 && (
+                        <button
+                            className="show-countries-button"
+                            onClick={handleShowCountries}
+                            disabled={loading}
+                        >
+                            {loading ? "Landen laden..." : "Toon alle landen"}
+                        </button>
+                    )}
+                </div>
 
                 <h1>Countries of the world</h1>
             </header>
 
-            {countries.length === 0 && (
-                <button
-                    onClick={handleShowCountries}
-                    disabled={loading}
-                >
-                    {loading ? "Landen laden..." : "Toon alle landen"}
-                </button>
-            )}
+
 
             {error && <p>{error}</p>}
 
