@@ -8,7 +8,7 @@ const API = axios.create({
     },
 });
 
-export const getCountries = async () => {
+const getCountries = async () => {
     try {
         const response = await API.get("/countries", {
             params: {
@@ -23,3 +23,4 @@ export const getCountries = async () => {
         throw error;
     }
 };
+export default getCountries

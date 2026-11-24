@@ -11,3 +11,42 @@
     object-fit: contain;
     margin: 0 auto 20px;
 }
+
+.countries-section {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.countries-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.countries-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.countries-table th,
+.countries-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+}
+
+.countries-table th {
+    background-color: #f3f6f9;
+    font-weight: bold;
+}
+
+.country-flag {
+    display: block;
+    width: 45px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.countries-table tbody tr:hover {
+    background-color: #f3f6f9;
+}

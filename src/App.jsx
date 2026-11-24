@@ -1,7 +1,8 @@
+
 import './App.css';
 
-import {getCountries} from "./services/countryApi.js";
-import {useState} from "react";
+import getCountries from "./services/countryApi.js";
+import { useState } from "react";
 import worldMap from "./assets/world_map.png";
 
 function App() {
@@ -33,7 +34,8 @@ function App() {
                     alt="Wereldkaart"
                     className="world-map"
                 />
-            <h1>Countries of the world</h1>
+
+                <h1>Countries of the world</h1>
             </header>
 
             {countries.length === 0 && (
@@ -41,14 +43,46 @@ function App() {
                     onClick={handleShowCountries}
                     disabled={loading}
                 >
-                    {loading ? "Laden..." : "Toon landen"}
+                    {loading ? "Landen laden..." : "Toon alle landen"}
                 </button>
             )}
 
             {error && <p>{error}</p>}
 
             {countries.length > 0 && (
-                <p>Aantal landen: {countries.length}</p>
+                <section className="countries-section">
+                    <h2>Alle landen</h2>
+
+                    <table className="countries-table">
+                        <thead>
+                        <tr>
+                            <th>Vlag</th>
+                            <th>Land</th>
+                            <th>Inwoners</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {countries.map((country) => (
+                            <tr key={country.alpha2Code}>
+                                <td>
+                                    <img
+                                        src={country.flags?.svg}
+                                        alt={`Vlag van ${country.name}`}
+                                        className="country-flag"
+                                    />
+                                </td>
+
+                                <td>{country.name}</td>
+
+                                <td>Has a population of{" "}
+                                    {country.population?.toLocaleString("nl-NL")} people
+                                </td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </section>
             )}
         </main>
     );
