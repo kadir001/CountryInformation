@@ -23,4 +23,24 @@ const getCountries = async () => {
         throw error;
     }
 };
-export default getCountries
+
+export const getCountryByName = async (countryName) => {
+    const response = await API.get(
+        `/name/${encodeURIComponent(countryName)}`
+    );
+
+    console.log("API response:", response.data);
+
+    const country = response.data.find(
+        (item) =>
+            item.name.toLowerCase() === countryName.toLowerCase()
+    );
+
+    if (!country) {
+        throw new Error("Country not found");
+    }
+
+    return country;
+};
+
+export default getCountries;

@@ -1,7 +1,9 @@
 
 import './App.css';
 
-import getCountries from "./services/countryApi.js";
+import getCountries, {
+    getCountryByName
+} from "./services/countryApi.js";
 import { useState } from "react";
 import worldMap from "./assets/world_map.png";
 
@@ -31,6 +33,9 @@ function App() {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+    const [country, setCountry] = useState(null);
+    const [searchError, setSearchError] = useState("");
 
     const handleShowCountries = async () => {
         try {
@@ -59,6 +64,38 @@ function App() {
             (index + 1) * countriesPerColumn
         )
     );
+
+    function convertPopulation(population) {
+        return Math.round(population / 1000000);
+    }
+
+    const handleSearch = async (event) => {
+        event.preventDefault();
+
+        const searchValue = searchTerm.trim();
+
+        if (!searchValue) return;
+
+        try {
+            setLoading(true);
+            setSearchError("");
+            setCountry(null);
+
+            const data = await getCountryByName(searchValue);
+
+            setCountry(data);
+
+        } catch (error) {
+            setSearchError(
+                `${searchValue} bestaat niet. Probeer het opnieuw`
+            );
+
+        } finally {
+            setLoading(false);
+            setSearchTerm("");
+        }
+    };
+
     return (
         <main>
             <header className="header">
@@ -82,7 +119,67 @@ function App() {
 
                 <h1>Countries of the world</h1>
             </header>
+            <section className="search-section">
 
+                    <h2>Zoek een land</h2>
+
+                    <form onSubmit={handleSearch}>
+
+                        <input
+                            type="text"
+                            value={searchTerm}
+                            onChange={(event) =>
+                                setSearchTerm(event.target.value)
+                            }
+                            placeholder="Bijvoorbeeld Nederland"
+                        />
+
+                        <button type="submit" disabled={loading}>
+                            {loading ? "Zoeken..." : "Zoek"}
+                        </button>
+
+                    </form>
+
+                    {searchError && (
+                        <p className="error-message">
+                            {searchError}
+                        </p>
+                    )}
+
+            </section>
+            {country && (
+                <section className="country-details">
+
+                    <div className="country-title">
+
+                        <img
+                            src={country.flags?.svg}
+                            alt={`Vlag van ${country.name}`}
+                        />
+
+                        <h2>{country.name}</h2>
+
+                    </div>
+
+                    <p>
+                        {country.name} is situated in {country.subregion}
+                        and the capital is {country.capital}
+                    </p>
+
+                    <p>
+                        It has a population of{" "}
+                        {convertPopulation(country.population)} million people
+                        and it borders with {country.borders?.length ?? 0}
+                        neighboring countries
+                    </p>
+
+                    <p>
+                        Websites can be found on{" "}
+                        {country.topLevelDomain?.join(", ")} domains
+                    </p>
+
+                </section>
+            )}
 
 
             {error && <p>{error}</p>}

@@ -61,3 +61,46 @@
     font-size: 13px;
     margin: 0;
 }
+
+.search-section {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.search-section form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-section input {
+    padding: 10px;
+    width: 250px;
+}
+
+.search-section button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.country-details {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.country-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.country-title img {
+    width: 60px;
+}
+
+.error-message {
+    color: red;
+}
