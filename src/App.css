@@ -1,0 +1,106 @@
+.header {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.world-map-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.world-map {
+    display: block;
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+}
+
+.countries-columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 30px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.country-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-width: 0;
+    gap: 12px;
+}
+
+.country-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.country-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.country-flag {
+    width: 40px;
+    height: 25px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.country-info span {
+    font-size: 18px;
+}
+
+.country-item p {
+    font-size: 13px;
+    margin: 0;
+}
+
+.search-section {
+    text-align: center;
+    margin: 30px auto;
+}
+
+.search-section form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-section input {
+    padding: 10px;
+    width: 250px;
+}
+
+.search-section button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.country-details {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.country-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.country-title img {
+    width: 60px;
+}
+
+.error-message {
+    color: red;
+}
