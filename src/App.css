@@ -16,39 +16,50 @@
     object-fit: contain;
 }
 
-.countries-section {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.countries-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.countries-table {
+.countries-columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 30px;
     width: 100%;
-    border-collapse: collapse;
-    text-align: left;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.countries-table th,
-.countries-table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid #ddd;
+.country-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-width: 0;
+    gap: 12px;
 }
 
-.countries-table th {
-    background-color: #f3f6f9;
-    font-weight: bold;
+.country-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.country-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .country-flag {
-    display: block;
-    width: 45px;
-    height: 30px;
+    width: 40px;
+    height: 25px;
     object-fit: contain;
+    flex-shrink: 0;
+}
+
+.country-info span {
+    font-size: 18px;
+}
+
+.country-item p {
+    font-size: 13px;
+    margin: 0;
 }
 
 .countries-table tbody tr:hover {

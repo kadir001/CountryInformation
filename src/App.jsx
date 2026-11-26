@@ -17,7 +17,7 @@ function getRegionColor(region) {
             return "red";
 
         case "Europe":
-            return "#B8860B";
+            return "yellow";
 
         case "Oceania":
             return "purple";
@@ -47,7 +47,18 @@ function App() {
             setLoading(false);
         }
     };
+    const sortedCountries = [...countries].sort((a, b) =>
+        a.population - b.population
+    );
 
+    const countriesPerColumn = Math.ceil(sortedCountries.length / 3);
+
+    const countryColumns = Array.from({ length: 3 }, (_, index) =>
+        sortedCountries.slice(
+            index * countriesPerColumn,
+            (index + 1) * countriesPerColumn
+        )
+    );
     return (
         <main>
             <header className="header">
@@ -78,44 +89,49 @@ function App() {
 
             {countries.length > 0 && (
                 <section className="countries-section">
+
                     <h2>Alle landen</h2>
 
-                    <table className="countries-table">
-                        <thead>
-                        <tr>
-                            <th>Vlag</th>
-                            <th>Land</th>
-                            <th>Inwoners</th>
-                        </tr>
-                        </thead>
+                    <div className="countries-columns">
 
-                        <tbody>
-                        {[...countries]
-                            .sort((a, b) => a.population - b.population)
-                            .map((country) => (
-                            <tr key={country.alpha2Code}>
-                                <td>
-                                    <img
-                                        src={country.flags?.svg}
-                                        alt={`Vlag van ${country.name}`}
-                                        className="country-flag"
-                                    />
-                                </td>
+                        {countryColumns.map((column, index) => (
+                            <div className="country-column" key={index}>
 
-                                <td>
-                                    <span style={{
-                                        color: getRegionColor(country.region) }}>
-                                        {country.name}
-                                    </span>
-                                </td>
+                                {column.map((country) => (
+                                    <article
+                                        className="country-item"
+                                        key={country.alpha2Code}
+                                    >
 
-                                <td>Has a population of{" "}
-                                    {country.population?.toLocaleString("nl-NL")} people
-                                </td>
-                            </tr>
+                                        <div className="country-info">
+
+                                            <img
+                                                src={country.flags?.svg}
+                                                alt={`Vlag van ${country.name}`}
+                                                className="country-flag"
+                                            />
+
+                                            <span style={{
+                                                color: getRegionColor(country.region)
+                                            }}>
+                                    {country.name}
+                                </span>
+
+                                        </div>
+
+                                        <p>
+                                            Has a population of{" "}
+                                            {country.population?.toLocaleString("nl-NL")}
+                                            {" "}people
+                                        </p>
+
+                                    </article>
+                                ))}
+
+                            </div>
                         ))}
-                        </tbody>
-                    </table>
+
+                    </div>
                 </section>
             )}
         </main>
